@@ -3,7 +3,6 @@ import { Todo, TodoList } from './types'
 
 export type TodoContextType = {
     todoList: TodoList
-
     newTodo: Todo
 }
 
