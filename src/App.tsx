@@ -3,20 +3,23 @@ import { Container } from './components/Container'
 import { Button } from './components/ui/button'
 import { Input } from '@/components/ui/input'
 import { TodoList } from './components/TodoList'
-import { FlexBucket } from './components/FlexBucket'
 
 function App() {
     return (
         <>
             <AppProvider>
-                <Container>
-                    <FlexBucket className="flex-col">
-                        <FlexBucket className="border-none">
-                            <Input className="text-secondary-foreground" />{' '}
+                <Container
+                    className="justify-center"
+                    size="full"
+                    direction="row"
+                >
+                    <Container className="border-2" size="md">
+                        <Container direction="row">
+                            <Input className="text-secondary-foreground" />
                             <Button variant={'secondary'}>Add Todo</Button>
-                        </FlexBucket>
+                        </Container>
                         <TodoList />
-                    </FlexBucket>
+                    </Container>
                 </Container>
             </AppProvider>
         </>
