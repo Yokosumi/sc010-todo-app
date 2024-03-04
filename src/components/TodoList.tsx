@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { AppContext } from '../../utils/AppContext'
 import { Button } from '@/components/ui/button'
+import { XSquare } from 'lucide-react'
 
 export const TodoList = () => {
     const { todoList, handleDelete } = useContext(AppContext)
@@ -14,7 +15,7 @@ export const TodoList = () => {
                             variant={'secondary'}
                             onClick={() => handleDelete(todo._id)}
                         >
-                            Delete Todo
+                            <XSquare />
                         </Button>
                     </li>
                 ))}
