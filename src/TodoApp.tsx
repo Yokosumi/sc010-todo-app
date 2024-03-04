@@ -2,10 +2,11 @@ import { Container } from './components/Container'
 import { Button } from './components/ui/button'
 import { Input } from '@/components/ui/input'
 import { TodoList } from './components/TodoList'
-import { handlePost } from '@/../utils/FetchData'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { AppContext } from '../utils/AppContext'
 
 export const TodoApp = () => {
+    const { handlePost } = useContext(AppContext)
     const [inputState, setInputState] = useState('')
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,10 +21,14 @@ export const TodoApp = () => {
                     <Container direction="row">
                         <Input
                             className="text-secondary-foreground"
+                            value={inputState}
                             onChange={handleInputChange}
                         />
                         <Button
-                            onClick={() => handlePost(inputState)}
+                            onClick={() => {
+                                handlePost(inputState)
+                                setInputState('')
+                            }}
                             variant={'secondary'}
                         >
                             Add Todo

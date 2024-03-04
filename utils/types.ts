@@ -1,8 +1,11 @@
-export type Todo = {
-    _id: string
+export type NewTodo = {
     body: string
     checked: boolean
-    badges: String[]
+    badges: string[]
+}
+
+export type Todo = NewTodo & {
+    _id: string
 }
 
 // export type Badge = {
@@ -16,4 +19,5 @@ export type AppContextType = {
     newTodo: Todo
     setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
     setNewTodo: React.Dispatch<React.SetStateAction<Todo>>
+    handlePost: (value: string) => void
 }
