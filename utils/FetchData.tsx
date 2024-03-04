@@ -14,22 +14,3 @@ export const fetchSingleEndpoint = async (endpoint: string) => {
         throw new Error(error)
     }
 }
-
-export const handlePost = async (value: string) => {
-    try {
-        const newTodo = {
-            body: value,
-            checked: false,
-            badges: [''],
-        }
-
-        await axios.post('http://localhost:3075/todos/', newTodo, {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-            },
-        })
-    } catch (e: any) {
-        throw new Error(e)
-    }
-}
