@@ -1,23 +1,26 @@
 import { useContext } from 'react'
 import { AppContext } from '../../utils/AppContext'
-import { Button } from '@/components/ui/button'
-import { XSquare } from 'lucide-react'
+import { RiDeleteBin5Line } from 'react-icons/ri'
+import { Container } from './Container'
 
 export const TodoList = () => {
     const { todoList, handleDelete } = useContext(AppContext)
     return (
         <>
-            <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+            <ul className="my-6 ml-6  [&>li]:mt-2">
                 {todoList.map((todo) => (
-                    <li key={todo._id}>
-                        {todo.body} - {todo.badges}{' '}
-                        <Button
-                            variant={'secondary'}
+                    <Container
+                        key={todo._id}
+                        direction="row"
+                        className="border-2 items-center bg-slate-700"
+                    >
+                        <li className="flex-grow">{todo.body}</li>
+                        <RiDeleteBin5Line
+                            className="cursor-pointer"
+                            size={20}
                             onClick={() => handleDelete(todo._id)}
-                        >
-                            <XSquare />
-                        </Button>
-                    </li>
+                        />
+                    </Container>
                 ))}
             </ul>
         </>
