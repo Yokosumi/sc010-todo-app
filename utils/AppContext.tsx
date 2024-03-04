@@ -11,6 +11,7 @@ const todoContext: AppContextType = {
     newTodo: { _id: '', body: '', checked: false, badges: [''] },
     setNewTodo: () => {},
     handlePost: () => {},
+    handleDelete: (_id: string) => {},
 }
 
 type AppProviderProps = {
@@ -45,6 +46,17 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         }
     }
 
+    const handleDelete = async (id: string) => {
+        try {
+            const response = await axios.delete(`http://${URL}/todos/${id}`)
+            if (response.status === 200) {
+                setTodoList((prev) => prev.filter((todo) => todo._id !== id))
+            }
+        } catch (e: any) {
+            throw new Error(e)
+        }
+    }
+
     useEffect(() => {
         fetchSingleEndpoint('todos').then((data) => setTodoList(data))
     }, [])
@@ -55,6 +67,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         newTodo,
         setNewTodo,
         handlePost,
+        handleDelete,
     }
 
     return (

@@ -20,4 +20,5 @@ export type AppContextType = {
     setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
     setNewTodo: React.Dispatch<React.SetStateAction<Todo>>
     handlePost: (value: string) => void
+    handleDelete: (_id: string) => void
 }
