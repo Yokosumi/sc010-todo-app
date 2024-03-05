@@ -30,7 +30,7 @@ export const Container: React.FC<ContainerProps> = ({
     return (
         <div
             className={cn(
-                'w-full p-4 bg-secondary-foreground text-primary-foreground',
+                'w-full bg-secondary-foreground p-4 text-primary-foreground',
                 className,
                 flexVariant,
                 sizeVariant

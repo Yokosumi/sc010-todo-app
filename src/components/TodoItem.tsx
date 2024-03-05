@@ -13,7 +13,7 @@ export const TodoItem = ({ children, id }: props) => {
     const { handleDelete } = useContext(AppContext)
     return (
         <>
-            <Checkbox />
+            <Checkbox className="h-5 w-5 bg-white" />
             <div className="flex-grow">{children}</div>
             <RiEdit2Line
                 className="cursor-pointer hover:text-blue-500"

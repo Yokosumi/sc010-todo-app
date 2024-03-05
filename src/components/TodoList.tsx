@@ -9,7 +9,7 @@ export const TodoList = () => {
         <>
             {todoList.map((todo) => (
                 <Container
-                    className="my-4 items-center rounded bg-slate-700"
+                    className="my-4 place-items-center  rounded border-2 bg-slate-700"
                     direction="row"
                     key={todo._id}
                 >
