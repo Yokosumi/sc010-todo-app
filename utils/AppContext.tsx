@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react'
-import { Todo, AppContextType } from './types'
+import { Todo, EditMode, AppContextType } from './types'
 import { fetchSingleEndpoint } from './api'
 import axios from 'axios'
 
@@ -10,8 +10,11 @@ const todoContext: AppContextType = {
     setTodoList: () => {},
     newTodo: { _id: '', body: '', checked: false, badges: [''] },
     setNewTodo: () => {},
+    editMode: false,
+    setEditMode: () => {},
     handlePost: () => {},
     handleDelete: (_id: string) => {},
+    handleEditMode: () => {},
 }
 
 type AppProviderProps = {
@@ -23,6 +26,7 @@ export const AppContext = createContext<AppContextType>(todoContext)
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [todoList, setTodoList] = useState<Todo[]>([] as Todo[])
     const [newTodo, setNewTodo] = useState<Todo>({} as Todo)
+    const [editMode, setEditMode] = useState<EditMode>(true)
 
     const handlePost = async (value: string) => {
         try {
@@ -57,6 +61,10 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         }
     }
 
+    const handleEditMode = () => {
+        setEditMode(!editMode)
+    }
+
     useEffect(() => {
         fetchSingleEndpoint('todos').then((data) => setTodoList(data))
     }, [])
@@ -68,6 +76,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setNewTodo,
         handlePost,
         handleDelete,
+        editMode,
+        setEditMode,
+        handleEditMode,
     }
 
     return (
