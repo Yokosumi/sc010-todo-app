@@ -6,10 +6,8 @@ import axios from 'axios'
 const URL = 'localhost:3075'
 
 const todoContext: AppContextType = {
-    todoList: [],
+    todoList: [] as Todo[],
     setTodoList: () => {},
-    newTodo: { _id: '', body: '', checked: false, badges: [''] },
-    setNewTodo: () => {},
     editMode: false,
     setEditMode: () => {},
     handlePost: () => {},
@@ -25,7 +23,6 @@ export const AppContext = createContext<AppContextType>(todoContext)
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [todoList, setTodoList] = useState<Todo[]>([] as Todo[])
-    const [newTodo, setNewTodo] = useState<Todo>({} as Todo)
     const [editMode, setEditMode] = useState<EditMode>(true)
 
     const handlePost = async (value: string) => {
@@ -72,8 +69,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const contextValue: AppContextType = {
         todoList,
         setTodoList,
-        newTodo,
-        setNewTodo,
         handlePost,
         handleDelete,
         editMode,
