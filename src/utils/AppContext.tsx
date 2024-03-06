@@ -6,7 +6,7 @@ import axios from 'axios'
 const URL = 'localhost:3075'
 
 // * The AppContextType is a type that defines the shape of the context object.
-export type AppContextType = {
+type AppContextType = {
     todoList: Todo[]
     editMode: boolean
     setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
@@ -35,7 +35,7 @@ export const AppContext = createContext<AppContextType>(todoContext)
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [todoList, setTodoList] = useState<Todo[]>([] as Todo[])
-    const [editMode, setEditMode] = useState<EditMode>(true)
+    const [editMode, setEditMode] = useState<EditMode>(false)
 
     const handlePost = async (value: string) => {
         try {

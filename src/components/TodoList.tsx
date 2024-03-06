@@ -1,9 +1,10 @@
 import { useAppContext } from '@/utils/AppContext'
 import { TodoItem } from './TodoItem'
 import { Container } from './ui/Container'
+import { EditMode } from './EditMode'
 
 export const TodoList = () => {
-    const { todoList } = useAppContext()
+    const { todoList, editMode } = useAppContext()
     return (
         <>
             {todoList.map((todo) => (
@@ -12,7 +13,11 @@ export const TodoList = () => {
                     direction="row"
                     key={todo._id}
                 >
-                    <TodoItem id={todo._id}>{todo.body}</TodoItem>
+                    {editMode ? (
+                        <EditMode id={todo._id} body={todo.body} />
+                    ) : (
+                        <TodoItem id={todo._id}>{todo.body}</TodoItem>
+                    )}
                 </Container>
             ))}
         </>
