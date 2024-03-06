@@ -1,10 +1,22 @@
 import { createContext, useState, useEffect } from 'react'
-import { Todo, EditMode, AppContextType } from './types'
+import { Todo, EditMode } from './types'
 import { fetchSingleEndpoint } from './api'
 import axios from 'axios'
 
 const URL = 'localhost:3075'
 
+// * The AppContextType is a type that defines the shape of the context object.
+export type AppContextType = {
+    todoList: Todo[]
+    setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
+    handlePost: (value: string) => void
+    handleDelete: (_id: string) => void
+    editMode: boolean
+    setEditMode: React.Dispatch<React.SetStateAction<boolean>>
+    handleEditMode: () => void
+}
+
+//* The todoContext object is the default value of the context object.
 const todoContext: AppContextType = {
     todoList: [] as Todo[],
     setTodoList: () => {},
@@ -66,6 +78,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         fetchSingleEndpoint('todos').then((data) => setTodoList(data))
     }, [])
 
+    // * The contextValue object is the value of the context object.
     const contextValue: AppContextType = {
         todoList,
         setTodoList,

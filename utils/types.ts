@@ -12,13 +12,3 @@ export type EditMode = boolean
 //     color: string
 //     variant: string
 // }
-
-export type AppContextType = {
-    todoList: Todo[]
-    setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
-    handlePost: (value: string) => void
-    handleDelete: (_id: string) => void
-    editMode: boolean
-    setEditMode: React.Dispatch<React.SetStateAction<boolean>>
-    handleEditMode: () => void
-}
