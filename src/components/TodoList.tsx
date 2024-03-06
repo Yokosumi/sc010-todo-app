@@ -1,10 +1,9 @@
-import { useContext } from 'react'
-import { AppContext } from '../../utils/AppContext'
+import { useAppContext } from '@/utils/AppContext'
 import { TodoItem } from './TodoItem'
-import { Container } from './Container'
+import { Container } from './ui/Container'
 
 export const TodoList = () => {
-    const { todoList } = useContext(AppContext)
+    const { todoList } = useAppContext()
     return (
         <>
             {todoList.map((todo) => (

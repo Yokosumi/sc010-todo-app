@@ -1,8 +1,7 @@
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { RiEdit2Line } from 'react-icons/ri'
 import { Checkbox } from '@/components/ui/checkbox'
-import { useContext } from 'react'
-import { AppContext } from '../../utils/AppContext'
+import { useAppContext } from '@/utils/AppContext'
 
 type props = {
     children: React.ReactNode
@@ -10,7 +9,7 @@ type props = {
 }
 
 export const TodoItem = ({ children, id }: props) => {
-    const { handleDelete } = useContext(AppContext)
+    const { handleDelete } = useAppContext()
     return (
         <>
             <Checkbox className="h-5 w-5 bg-white" />

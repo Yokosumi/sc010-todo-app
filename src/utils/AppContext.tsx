@@ -1,14 +1,26 @@
-import { createContext, useState, useEffect } from 'react'
-import { Todo, EditMode, AppContextType } from './types'
+import { createContext, useState, useEffect, useContext } from 'react'
+import { Todo, EditMode } from './types'
 import { fetchSingleEndpoint } from './api'
 import axios from 'axios'
 
 const URL = 'localhost:3075'
 
+// * The AppContextType is a type that defines the shape of the context object.
+export type AppContextType = {
+    todoList: Todo[]
+    editMode: boolean
+    setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
+    setEditMode: React.Dispatch<React.SetStateAction<boolean>>
+    handlePost: (value: string) => void
+    handleDelete: (_id: string) => void
+    handleEditMode: () => void
+}
+
+//* The todoContext object is the default value of the context object.
 const todoContext: AppContextType = {
     todoList: [] as Todo[],
-    setTodoList: () => {},
     editMode: false,
+    setTodoList: () => {},
     setEditMode: () => {},
     handlePost: () => {},
     handleDelete: (_id: string) => {},
@@ -66,13 +78,14 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         fetchSingleEndpoint('todos').then((data) => setTodoList(data))
     }, [])
 
+    // * The contextValue object is the value of the context object.
     const contextValue: AppContextType = {
         todoList,
+        editMode,
         setTodoList,
+        setEditMode,
         handlePost,
         handleDelete,
-        editMode,
-        setEditMode,
         handleEditMode,
     }
 
@@ -81,4 +94,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             {children}
         </AppContext.Provider>
     )
+}
+
+// * custom hook for using the AppContext
+export const useAppContext = () => {
+    const context = useContext(AppContext)
+    if (!context) {
+        throw new Error('useAppContext must be used within an AppProvider')
+    }
+    return context
 }
