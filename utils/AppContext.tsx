@@ -8,19 +8,19 @@ const URL = 'localhost:3075'
 // * The AppContextType is a type that defines the shape of the context object.
 export type AppContextType = {
     todoList: Todo[]
+    editMode: boolean
     setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
+    setEditMode: React.Dispatch<React.SetStateAction<boolean>>
     handlePost: (value: string) => void
     handleDelete: (_id: string) => void
-    editMode: boolean
-    setEditMode: React.Dispatch<React.SetStateAction<boolean>>
     handleEditMode: () => void
 }
 
 //* The todoContext object is the default value of the context object.
 const todoContext: AppContextType = {
     todoList: [] as Todo[],
-    setTodoList: () => {},
     editMode: false,
+    setTodoList: () => {},
     setEditMode: () => {},
     handlePost: () => {},
     handleDelete: (_id: string) => {},
@@ -81,11 +81,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     // * The contextValue object is the value of the context object.
     const contextValue: AppContextType = {
         todoList,
+        editMode,
         setTodoList,
+        setEditMode,
         handlePost,
         handleDelete,
-        editMode,
-        setEditMode,
         handleEditMode,
     }
 
