@@ -9,22 +9,32 @@ const URL = 'localhost:3075'
 type AppContextType = {
     todoList: Todo[]
     editMode: boolean
+    editText?: string
+    editIndex: number
     setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>
     setEditMode: React.Dispatch<React.SetStateAction<boolean>>
+    setEditText: React.Dispatch<React.SetStateAction<string>>
+    setEditIndex: React.Dispatch<React.SetStateAction<number>>
     handlePost: (value: string) => void
     handleDelete: (_id: string) => void
-    handleEditMode: () => void
+    handleEditMode: (index: number) => void
+    handleEditSave: () => void
 }
 
 //* The todoContext object is the default value of the context object.
 const todoContext: AppContextType = {
     todoList: [] as Todo[],
     editMode: false,
+    editText: '',
+    editIndex: 0,
     setTodoList: () => {},
     setEditMode: () => {},
+    setEditText: () => {},
+    setEditIndex: () => {},
     handlePost: () => {},
     handleDelete: (_id: string) => {},
     handleEditMode: () => {},
+    handleEditSave: () => {},
 }
 
 type AppProviderProps = {
@@ -36,6 +46,8 @@ export const AppContext = createContext<AppContextType>(todoContext)
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [todoList, setTodoList] = useState<Todo[]>([] as Todo[])
     const [editMode, setEditMode] = useState<EditMode>(false)
+    const [editText, setEditText] = useState<string>('')
+    const [editIndex, setEditIndex] = useState(0)
 
     const handlePost = async (value: string) => {
         try {
@@ -70,8 +82,18 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         }
     }
 
-    const handleEditMode = () => {
-        setEditMode(!editMode)
+    const handleEditMode = (index: number) => {
+        setEditMode(true)
+        setEditIndex(index)
+    }
+
+    const handleEditSave = () => {
+        const newTodo = { ...todoList }
+        setTodoList(
+            newTodo.map((todo) =>
+                todo._id === todo._id ? { ...todo, body: editText } : todo
+            )
+        )
     }
 
     useEffect(() => {
@@ -82,11 +104,16 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const contextValue: AppContextType = {
         todoList,
         editMode,
+        editText,
+        editIndex,
         setTodoList,
         setEditMode,
+        setEditText,
+        setEditIndex,
         handlePost,
         handleDelete,
         handleEditMode,
+        handleEditSave,
     }
 
     return (

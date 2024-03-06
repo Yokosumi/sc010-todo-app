@@ -1,12 +1,13 @@
 import { useAppContext } from '@/utils/AppContext'
 
 type props = {
-    body: string
+    currentTodo?: string
+    newTodo?: string
     id: string
 }
 
-export const EditMode = ({ body, id }: props) => {
-    const { handleEditMode } = useAppContext()
+export const EditMode = ({ currentTodo, newTodo, id }: props) => {
+    const { handleEditMode, handleEditSave } = useAppContext()
     return (
         <>
             <div
@@ -14,11 +15,17 @@ export const EditMode = ({ body, id }: props) => {
                 className="flex items-center justify-center text-black"
             >
                 <input
-                    value={body}
+                    defaultValue={currentTodo}
+                    value={newTodo}
                     type="text"
                     className="w-11/12 border-b-2 border-gray-400 p-2"
                 />
-                <button className="bg-green-500 p-2 text-white">Save</button>
+                <button
+                    className="bg-green-500 p-2 text-white"
+                    onClick={handleEditSave}
+                >
+                    Save
+                </button>
                 <button
                     className="bg-red-500 p-2 text-white"
                     onClick={handleEditMode}
