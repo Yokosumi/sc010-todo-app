@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useContext } from 'react'
 import { Todo, EditMode } from './types'
 import { fetchSingleEndpoint } from './api'
 import axios from 'axios'
@@ -94,4 +94,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             {children}
         </AppContext.Provider>
     )
+}
+
+// * custom hook for using the AppContext
+export const useAppContext = () => {
+    const context = useContext(AppContext)
+    if (!context) {
+        throw new Error('useAppContext must be used within an AppProvider')
+    }
+    return context
 }

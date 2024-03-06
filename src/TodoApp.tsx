@@ -1,12 +1,12 @@
-import { Container } from './components/Container'
+import { Container } from './components/ui/Container'
 import { Button } from './components/ui/button'
 import { Input } from '@/components/ui/input'
 import { TodoList } from './components/TodoList'
-import { useContext, useState } from 'react'
-import { AppContext } from '../utils/AppContext'
+import { useState } from 'react'
+import { useAppContext } from '@/utils/AppContext'
 
 export const TodoApp = () => {
-    const { handlePost } = useContext(AppContext)
+    const { handlePost } = useAppContext()
     const [inputState, setInputState] = useState('')
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
