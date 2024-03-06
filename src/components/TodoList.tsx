@@ -4,7 +4,7 @@ import { Container } from './ui/Container'
 import { EditMode } from './EditMode'
 
 export const TodoList = () => {
-    const { todoList, editMode, editText, editIndex } = useAppContext()
+    const { todoList, editMode, editIndex } = useAppContext()
     return (
         <>
             {todoList.map((todo, index) => (
@@ -14,11 +14,7 @@ export const TodoList = () => {
                     key={index}
                 >
                     {editMode && editIndex === index ? (
-                        <EditMode
-                            id={todo._id}
-                            currentTodo={editText}
-                            newTodo={editText}
-                        />
+                        <EditMode id={todo._id} body={todo.body} />
                     ) : (
                         <TodoItem id={todo._id} index={index}>
                             {todo.body}

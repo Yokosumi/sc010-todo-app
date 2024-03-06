@@ -1,13 +1,14 @@
 import { useAppContext } from '@/utils/AppContext'
+import { useState } from 'react'
 
 type props = {
-    currentTodo?: string
-    newTodo?: string
     id: string
+    body: string
 }
 
-export const EditMode = ({ currentTodo, newTodo, id }: props) => {
-    const { handleEditMode, handleEditSave } = useAppContext()
+export const EditMode = ({ id, body }: props) => {
+    const [value, setValue] = useState(body)
+    const { handlePatch, setEditMode } = useAppContext()
     return (
         <>
             <div
@@ -15,20 +16,20 @@ export const EditMode = ({ currentTodo, newTodo, id }: props) => {
                 className="flex items-center justify-center text-black"
             >
                 <input
-                    defaultValue={currentTodo}
-                    value={newTodo}
-                    type="text"
                     className="w-11/12 border-b-2 border-gray-400 p-2"
+                    onChange={(e) => setValue(e.target.value)}
+                    value={value}
+                    type="text"
                 />
                 <button
                     className="bg-green-500 p-2 text-white"
-                    onClick={handleEditSave}
+                    onClick={() => handlePatch(id, value)}
                 >
                     Save
                 </button>
                 <button
                     className="bg-red-500 p-2 text-white"
-                    onClick={handleEditMode}
+                    onClick={() => setEditMode(false)}
                 >
                     Cancel
                 </button>

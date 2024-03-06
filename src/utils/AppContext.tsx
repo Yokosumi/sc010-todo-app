@@ -17,8 +17,8 @@ type AppContextType = {
     setEditIndex: React.Dispatch<React.SetStateAction<number>>
     handlePost: (value: string) => void
     handleDelete: (_id: string) => void
+    handlePatch: (id: string, value: string) => void
     handleEditMode: (index: number) => void
-    handleEditSave: () => void
 }
 
 //* The todoContext object is the default value of the context object.
@@ -33,8 +33,8 @@ const todoContext: AppContextType = {
     setEditIndex: () => {},
     handlePost: () => {},
     handleDelete: (_id: string) => {},
+    handlePatch: () => {},
     handleEditMode: () => {},
-    handleEditSave: () => {},
 }
 
 type AppProviderProps = {
@@ -82,18 +82,32 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         }
     }
 
+    const handlePatch = async (id: string, value: string) => {
+        try {
+            const response = await axios.patch(
+                `http://${URL}/todos/${id}`,
+                { body: value },
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+            if (response.status === 200) {
+                setTodoList((prev) =>
+                    prev.map((todo) => (todo._id === id ? response.data : todo))
+                )
+                setEditMode(false)
+            }
+        } catch (e: any) {
+            throw new Error(e)
+        }
+    }
+
     const handleEditMode = (index: number) => {
         setEditMode(true)
         setEditIndex(index)
-    }
-
-    const handleEditSave = () => {
-        const newTodo = { ...todoList }
-        setTodoList(
-            newTodo.map((todo) =>
-                todo._id === todo._id ? { ...todo, body: editText } : todo
-            )
-        )
     }
 
     useEffect(() => {
@@ -112,8 +126,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setEditIndex,
         handlePost,
         handleDelete,
+        handlePatch,
         handleEditMode,
-        handleEditSave,
     }
 
     return (
