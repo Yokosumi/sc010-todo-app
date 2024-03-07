@@ -6,10 +6,11 @@ import { useAppContext } from '@/utils/AppContext'
 type props = {
     children: React.ReactNode
     id: string
+    index: number
 }
 
-export const TodoItem = ({ children, id }: props) => {
-    const { handleDelete } = useAppContext()
+export const TodoItem = ({ children, id, index }: props) => {
+    const { handleDelete, handleEditMode } = useAppContext()
     return (
         <>
             <Checkbox className="h-5 w-5 bg-white" />
@@ -17,6 +18,7 @@ export const TodoItem = ({ children, id }: props) => {
             <RiEdit2Line
                 className="cursor-pointer hover:text-blue-500"
                 size={20}
+                onClick={() => handleEditMode(index)}
             />
             <RiDeleteBin5Line
                 className="cursor-pointer hover:text-red-500"
