@@ -11,7 +11,7 @@ export const EditMode = ({ id, body }: props) => {
     const { handlePatch, setEditMode } = useAppContext()
     return (
         <>
-            <div
+            <section
                 key={id}
                 className="flex items-center justify-center text-black"
             >
@@ -33,7 +33,7 @@ export const EditMode = ({ id, body }: props) => {
                 >
                     Cancel
                 </button>
-            </div>
+            </section>
         </>
     )
 }

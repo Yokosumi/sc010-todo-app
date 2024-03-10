@@ -14,7 +14,7 @@ export const TodoItem = ({ children, id, index }: props) => {
     return (
         <>
             <Checkbox className="h-5 w-5 bg-white" />
-            <div className="flex-grow">{children}</div>
+            <section className="flex-grow">{children}</section>
             <RiEdit2Line
                 className="cursor-pointer hover:text-blue-500"
                 size={20}
