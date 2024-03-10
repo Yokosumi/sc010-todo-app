@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { Todo, EditMode } from '../types'
+import { Todo, EditMode } from '@/lib/types'
 import { fetchSingleEndpoint } from '@/lib/tools/utils'
 import axios from 'axios'
 

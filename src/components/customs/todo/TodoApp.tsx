@@ -1,7 +1,7 @@
-import { Container } from '../container'
-import { Button } from '../../ui/button'
+import { Container } from '@/components/customs/container'
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { TodoList } from './TodoList'
+import { TodoList } from '@/components/customs/todo/TodoList'
 import { useInput } from '@/lib/tools/hooks'
 import { useAppContext } from '@/lib/contexts/AppContext'
 
