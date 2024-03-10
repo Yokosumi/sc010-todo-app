@@ -2,17 +2,12 @@ import { Container } from '../container'
 import { Button } from '../../ui/button'
 import { Input } from '@/components/ui/input'
 import { TodoList } from './TodoList'
-import { useState } from 'react'
+import { useInput } from '@/lib/tools/hooks'
 import { useAppContext } from '@/lib/contexts/AppContext'
 
 export const TodoApp = () => {
     const { handlePost } = useAppContext()
-    const [inputState, setInputState] = useState('')
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const todoBody = event.target.value
-        setInputState(todoBody)
-    }
+    const [inputState, handleInputChange, handleInputReset] = useInput('')
 
     return (
         <>
@@ -27,7 +22,7 @@ export const TodoApp = () => {
                         <Button
                             onClick={() => {
                                 handlePost(inputState)
-                                setInputState('')
+                                handleInputReset()
                             }}
                             variant={'secondary'}
                         >
