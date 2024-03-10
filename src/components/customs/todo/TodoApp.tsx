@@ -1,7 +1,7 @@
-import { Container } from './components/ui/Container'
-import { Button } from './components/ui/button'
+import { Container } from '../container'
+import { Button } from '../../ui/button'
 import { Input } from '@/components/ui/input'
-import { TodoList } from './components/TodoList'
+import { TodoList } from './TodoList'
 import { useState } from 'react'
 import { useAppContext } from '@/utils/AppContext'
 

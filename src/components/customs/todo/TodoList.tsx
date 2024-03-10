@@ -1,7 +1,7 @@
 import { useAppContext } from '@/utils/AppContext'
 import { TodoItem } from './TodoItem'
-import { Container } from './ui/Container'
-import { EditMode } from './EditMode'
+import { Container } from '../container'
+import { EditMode } from '../editmode'
 
 export const TodoList = () => {
     const { todoList, editMode, editIndex } = useAppContext()
