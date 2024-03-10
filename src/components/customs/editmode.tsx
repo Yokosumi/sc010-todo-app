@@ -1,4 +1,4 @@
-import { useAppContext } from '@/utils/AppContext'
+import { useAppContext } from '@/lib/contexts/AppContext'
 import { useState } from 'react'
 
 type props = {

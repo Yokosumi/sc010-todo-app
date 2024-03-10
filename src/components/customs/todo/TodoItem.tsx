@@ -1,7 +1,7 @@
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { RiEdit2Line } from 'react-icons/ri'
 import { Checkbox } from '@/components/ui/checkbox'
-import { useAppContext } from '@/utils/AppContext'
+import { useAppContext } from '@/lib/contexts/AppContext'
 
 type props = {
     children: React.ReactNode

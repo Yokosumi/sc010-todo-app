@@ -3,7 +3,7 @@ import { Button } from '../../ui/button'
 import { Input } from '@/components/ui/input'
 import { TodoList } from './TodoList'
 import { useState } from 'react'
-import { useAppContext } from '@/utils/AppContext'
+import { useAppContext } from '@/lib/contexts/AppContext'
 
 export const TodoApp = () => {
     const { handlePost } = useAppContext()

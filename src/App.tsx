@@ -1,4 +1,4 @@
-import { AppProvider } from './utils/AppContext'
+import { AppProvider } from './lib/contexts/AppContext'
 import { TodoApp } from './components/customs/todo/TodoApp'
 
 function App() {

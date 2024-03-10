@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { Todo, EditMode } from './types'
-import { fetchSingleEndpoint } from '@/lib/utils'
+import { Todo, EditMode } from '../types'
+import { fetchSingleEndpoint } from '@/lib/tools/utils'
 import axios from 'axios'
 
 const URL = 'localhost:3075'

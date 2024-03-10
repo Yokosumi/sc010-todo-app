@@ -1,4 +1,4 @@
-import { useAppContext } from '@/utils/AppContext'
+import { useAppContext } from '@/lib/contexts/AppContext'
 import { TodoItem } from './TodoItem'
 import { Container } from '../container'
 import { EditMode } from '../editmode'

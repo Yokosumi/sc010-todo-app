@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/tools/utils'
 
 type ContainerProps = React.HTMLAttributes<HTMLDivElement> & {
     children: React.ReactNode
